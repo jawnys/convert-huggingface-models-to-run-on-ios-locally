@@ -15,6 +15,13 @@
 </details>
 
 <details>
+<summary>What do I need to bring?</summary>
+
+Copy paste some NSFW images into [here](./steps/test-images/) for testing.
+
+</details>
+
+<details>
 <summary>Step 1: convert PyTorch model to CoreML model</summary>
 
 1. Download all files for the [Falconsai/nsfw_image_detection](https://huggingface.co/Falconsai/nsfw_image_detection) model from HuggingFace 🤗 and move [here](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/input-model/)
@@ -101,10 +108,10 @@
 2. **One-time per repo**  
    Track in Git
    ```shell
-   # Mark which files are large (for git-lfs)
-   git lfs track "path/to/large/files/like/BluetoothBird/Models/NsfwDetector.mlpackage/**"
+   # Mark which files are large (will update .gitattributes for git-lfs)
+   git lfs track "path/to/large/files/like/iOS-app/Models/NsfwDetector.mlpackage/**"
    git add .gitattributes
-   git commit -m "Mark the large files with .gitattributes"
+   git commit -m "Ready to target the large files with .gitattributes"
    git push
    # Safe to commit
    git add "<all large files>"
