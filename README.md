@@ -1,5 +1,7 @@
-## 📁 [Steps to prepare the model for an iOS app](./steps)...
-...walks through how to convert a PyTorch vision model to a CoreML model, which can be bundled into an iOS app to run locally.
+# [This repo contains steps](./steps)...
+...on how to convert a PyTorch vision model into a CoreML model, which can be bundled into an iOS app to run locally.
+
+ℹ️ For convenience, this repo includes the final CoreML model ready to test/use in your app [here](./steps/step-1-convert-pytorch-model-to-coreml-model/output-model/NsfwDetector.mlpackage/).
 
 <details>
 <summary>What model are we using?</summary>
