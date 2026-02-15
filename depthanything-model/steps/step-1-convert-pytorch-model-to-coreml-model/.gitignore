@@ -163,5 +163,6 @@ cython_debug/
 .env.*
 !.env.example
 input-model/*
+output-model/*
 !input-model/blank-file-to-keep-this-folder-in-git-EOM.txt
 !output-model/blank-file-to-keep-this-folder-in-git-EOM.txt
