@@ -14,8 +14,8 @@ def convert_model():
     """
     print("🏎️ Start converting model...")
 
-    input_model_dir = "input-model"
-    output_model_dir = "output-model"
+    input_model_dir = "inputs"
+    output_model_dir = "outputs"
 
     os.makedirs(output_model_dir, exist_ok=True)
 
@@ -65,10 +65,10 @@ def convert_model():
     )
 
     coreml_model = ct.convert(
-        traced, 
-        inputs=[input_desc], 
+        traced,
+        inputs=[input_desc],
         minimum_deployment_target=ct.target.iOS15,
-        convert_to="mlprogram"
+        convert_to="mlprogram",
     )
 
     if (coreml_model is None) or (not isinstance(coreml_model, MLModel)):

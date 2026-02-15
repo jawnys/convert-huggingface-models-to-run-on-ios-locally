@@ -9,9 +9,10 @@ from transformers import ViTForImageClassification, ViTImageProcessor
 import os
 
 NSFW_THRESHOLD = 0.5
-PYTORCH_MODEL = "input-model"
-COREML_MODEL = "output-model/NsfwDetector.mlpackage"
+PYTORCH_MODEL = "inputs"
+COREML_MODEL = "outputs/NsfwDetector.mlpackage"
 TEST_IMAGES_DIR = "../test-images"
+
 
 def collect_test_images(root_dir: str, extensions=None):
     """
@@ -22,7 +23,7 @@ def collect_test_images(root_dir: str, extensions=None):
     found = []
     for dirpath, _, filenames in os.walk(root_dir):
         for fn in filenames:
-            if fn.split('.')[-1].lower() in extensions:
+            if fn.split(".")[-1].lower() in extensions:
                 found.append(os.path.join(dirpath, fn))
     return sorted(found)
 
@@ -138,7 +139,6 @@ def compare_models():
 
             emoji = "🔞" if nsfw_score >= NSFW_THRESHOLD else "✅"
             return f"{probs} {emoji}"
-        
 
         # normalize shape if necessary
         p_core = p_core[: p_pt.shape[0]]
@@ -146,7 +146,13 @@ def compare_models():
         print(
             f"{p}: max_abs_diff={d.max():.6f}, pt_top={p_pt.argmax()}, core_top={p_core.argmax()}"
         )
-        print("pt_probs:", prob_with_emoji(p_pt), "\ncore_probs:", prob_with_emoji(p_core), "\n")
+        print(
+            "pt_probs:",
+            prob_with_emoji(p_pt),
+            "\ncore_probs:",
+            prob_with_emoji(p_core),
+            "\n",
+        )
         results.append(float(d.max()))
 
     if results:

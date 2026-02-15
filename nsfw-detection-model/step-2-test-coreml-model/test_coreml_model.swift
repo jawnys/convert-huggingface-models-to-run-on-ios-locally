@@ -7,7 +7,7 @@ import AppKit
 func main() {
   print("🏎️ Start testing CoreML model...")
 
-  let MODEL_PACKAGE_PATH = "../step-1-convert-pytorch-model-to-coreml-model/output-model/NsfwDetector.mlpackage"
+  let MODEL_PACKAGE_PATH = "../step-1-convert-pytorch-model-to-coreml-model/outputs/NsfwDetector.mlpackage"
   let TEST_IMAGES_PATH = "../test-images"
 
   let repoRoot = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)

@@ -1,13 +1,21 @@
-# [This folder contains steps](./steps)...
-...on how to convert a PyTorch vision model into a CoreML model, which can be bundled into an iOS app to run locally.
+# [nsfw_image_detection](https://huggingface.co/Falconsai/nsfw_image_detection) ➡️ CoreML
 
-ℹ️ For convenience, this repo includes the final CoreML model ready to test/use in your app [here](./steps/step-1-convert-pytorch-model-to-coreml-model/output-model/NsfwDetector.mlpackage/).
+<details>
+<summary>
+TL;DR
+</summary>
+
+This folder contains steps to:
+1. convert the model
+2. compare both models
+3. testing in Swift
+
+</details>
 
 <details>
 <summary>What model are we using?</summary>
 
 - **Source**: Falconsai/nsfw_image_detection from HuggingFace
-- **Kind**: a fine-tuned Vision Transformer (ViT) model
 - **Input**: expects 224x224 RGB images
 - **Output**: binary labelling ("normal" or "NSFW") with an adjustable threshold
 - **Deployment Target**: iOS 15+ (targeted in script) 
@@ -16,24 +24,18 @@
 
 </details>
 
-<details>
-<summary>What do I need to bring?</summary>
-
-Copy paste some NSFW images into [here](./steps/test-images/) for testing.
-
-</details>
 
 <details>
-<summary>Step 1: convert PyTorch model to CoreML model</summary>
+<summary>Step 1: convert</summary>
 
-1. Download all files for the [Falconsai/nsfw_image_detection](https://huggingface.co/Falconsai/nsfw_image_detection) model from HuggingFace 🤗 and move [here](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/input-model/)
+1. Download all files for the [Falconsai/nsfw_image_detection](https://huggingface.co/Falconsai/nsfw_image_detection) model and move [here](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/inputs/)
 2. Assuming you have [asdf](https://asdf-vm.com/), setup the environment:
    ```shell
    python3 -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```
-3. Run the script to convert and output the CoreML model [here](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/output-model/):
+3. Run the script to convert and output the CoreML model [here](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/outputs/):
    ```shell
    ./convert_model.py
    ```
@@ -64,7 +66,7 @@ Copy paste some NSFW images into [here](./steps/test-images/) for testing.
 </details>
 
 <details>
-<summary>Step 2: Test the CoreML model in Swift</summary>
+<summary>Step 2: test in Swift</summary>
 
 1. Complete step 1
 2. Run the script to see how the same images from step 1 are classified:
@@ -83,46 +85,5 @@ Copy paste some NSFW images into [here](./steps/test-images/) for testing.
   ```shell
   chmod +x test_coreml_model.swift
   ```
-
-</details>
-
-<details>
-<summary>Step 3: Load the CoreML model into app</summary>
-
-1. Use XCode
-2. Drag [NSFWDetector.mlpackage](./prepare-model-for-app/step-1-convert-pytorch-model-to-coreml-model/output-model/NsfwDetector.mlpackage/) into a 'Models' folder  
-   Why in XCode? to get prompted to ensure new files to target the project
-3. Add a new Swift file like 'NsfwDetectionService.swift' with all functions that use the model
-
-</details>
-
-<details>
-<summary>Do I commit this model?</summary>
-
-### ✋🏻 STOP! The model is nearly ~200MB, so use Git LFS instead.
-
-1. **One-time per device**  
-   Install tool to handle large files
-   ```shell
-   brew install git-lfs
-   git lfs install
-   ```
-2. **One-time per repo**  
-   Track in Git
-   ```shell
-   # Mark which files are large (will update .gitattributes for git-lfs)
-   git lfs track "path/to/large/files/like/iOS-app/Models/NsfwDetector.mlpackage/**"
-   git add .gitattributes
-   git commit -m "Ready to target the large files with .gitattributes"
-   git push
-   # Safe to commit
-   git add "<all large files>"
-   git commit -m "Start tracking the large files in Git"
-   git push
-   ```
-3. **Daily loop**  
-   The usual `git pull` (LFS files should be pulled automatically if git-lfs is installed, if failed or first-time clone, manually `git lfs pull`)  
-   The usual `git push` (changes to the large files marked in .gitattributes will be handled by git-lfs)  
-4. **Got issues?** just GPT and you can always rewrite Git's history if it was accidentally committed without LFS
 
 </details>

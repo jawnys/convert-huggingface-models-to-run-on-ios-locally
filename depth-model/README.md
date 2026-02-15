@@ -13,6 +13,20 @@ This folder contains steps to:
 
 </details>
 
+<details>
+<summary>
+What model are we using?
+</summary>
+
+- **Source**: DepthAnything/Depth-Anything-V2 on GitHub
+- **Output**: depth PNG for your input image[^1]
+- **Deployment Target**: iOS 15+ (targeted in script) 
+- **License**: apache-2.0 (yes commercial-use allowed)
+
+[^1]: Depth values are **relative depth**, not absolute metric distance in meters.
+
+</details>
+
 
 <details>
 <summary>
@@ -45,20 +59,5 @@ Quick start
    chmod +x test_coreml_model.swift
    ```
 6. Use the CoreML model from [step-1-convert/outputs](./step-1-convert/outputs) in your project
-
-</details>
-
-
-<details>
-<summary>
-What model are we using?
-</summary>
-
-- **Source**: DepthAnything/Depth-Anything-V2 on GitHub
-- **Output**: depth PNG for your input image[^1]
-- **Deployment Target**: iOS 15+ (targeted in script) 
-- **License**: apache-2.0 (yes commercial-use allowed)
-
-[^1]: Depth values are **relative depth**, not absolute metric distance in meters.
 
 </details>
