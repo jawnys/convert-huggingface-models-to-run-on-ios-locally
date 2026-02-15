@@ -162,7 +162,7 @@ cython_debug/
 .env
 .env.*
 !.env.example
-input-model/*
-output-model/*
-!input-model/paste-model-here.txt
-!output-model/copy-model-from-here-into-your-project.txt
+inputs/*
+outputs/*
+!inputs/paste-model-here.txt
+!outputs/coreml-model-will-be-here.txt
